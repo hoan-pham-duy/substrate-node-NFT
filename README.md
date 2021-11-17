@@ -1,3 +1,9 @@
+# Tutorial 1:
+Example to do transactions between 2 accounts
+
+# Tutorial 2:
+Use Nick pallets as a module that allows blockchain users to pay a deposit to reserve a nickname and associate it with an account they control.
+After user set up the nickname of their address, they can query the nickname, the nick name string return in hexa format
 # Substrate Node Template
 
 [![Try on playground](https://img.shields.io/badge/Playground-Node_Template-brightgreen?logo=Parity%20Substrate)](https://playground.substrate.dev/?deploy=node-template) [![Matrix](https://img.shields.io/matrix/substrate-technical:matrix.org)](https://matrix.to/#/#substrate-technical:matrix.org)
