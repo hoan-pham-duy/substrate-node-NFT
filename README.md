@@ -1,3 +1,9 @@
+# Substrate Tutorial Solution Kitties
+Solution for Substrate Tutorial Kitties
+Run test for kitties pallet: cargo test -p pallet-kitties
+[ERROR NOW] Run benchmark for kitties pallet:  https://docs.substrate.io/v3/runtime/benchmarking/
+ - cargo build --features runtime-benchmarks
+ - 
 # Substrate Node Template
 
 [![Try on playground](https://img.shields.io/badge/Playground-Node_Template-brightgreen?logo=Parity%20Substrate)](https://playground.substrate.dev/?deploy=node-template) [![Matrix](https://img.shields.io/matrix/substrate-technical:matrix.org)](https://matrix.to/#/#substrate-technical:matrix.org)
