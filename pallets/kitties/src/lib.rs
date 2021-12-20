@@ -4,7 +4,6 @@
 /// Learn more about FRAME and the core library of Substrate FRAME pallets:
 /// <https://substrate.io/docs/en/knowledgebase/runtime/frame>
 pub use pallet::*;
-
 mod mock;
 mod tests;
 
@@ -158,7 +157,7 @@ pub mod pallet {
 		///
 		/// The actual kitty creation is done in the `mint()` function.
 		#[pallet::weight(100)]
-		pub fn create_kitty(origin: OriginFor<T>) -> DispatchResult {
+		pub fn create_kitty(origin: OriginFor<T>, nft_object_base_64_str: bool) -> DispatchResult {
 			let sender = ensure_signed(origin)?;
 
 			let kitty_id = Self::mint(&sender, None, None)?;
