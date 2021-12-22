@@ -41,11 +41,15 @@ pub mod pallet {
 	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
 	#[scale_info(skip_type_params(T))]
 	#[cfg_attr(feature = "std", derive(Serialize, Deserialize))]
+	/*
 	pub enum Gender {
 		Male,
 		Female,
 	}
-
+	*/
+	pub enum Gender {
+		ConstantGender,
+	}
 	#[pallet::pallet]
 	#[pallet::generate_store(pub(super) trait Store)]
 	pub struct Pallet<T>(_);
@@ -297,11 +301,14 @@ pub mod pallet {
 
 	impl<T: Config> Pallet<T> {
 		fn gen_gender() -> Gender {
+			/*
 			let random = T::KittyRandomness::random(&b"gender"[..]).0;
 			match random.as_ref()[0] % 2 {
 				0 => Gender::Male,
 				_ => Gender::Female,
 			}
+			*/
+			Gender::ConstantGender
 		}
 
 		fn gen_dna() -> [u8; 16] {
