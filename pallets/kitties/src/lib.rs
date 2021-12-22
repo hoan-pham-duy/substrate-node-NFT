@@ -22,7 +22,7 @@ pub mod pallet {
 	#[cfg(feature = "std")]
 	use frame_support::serde::{Deserialize, Serialize};
 
-	const MAX_FILE_SIZE_IN_BYTE: usize = 100 * 1024; //MAX 100 MB
+	const MAX_FILE_SIZE_IN_BYTE: usize = 100; //MAX 100 Bytes
 	type AccountOf<T> = <T as frame_system::Config>::AccountId;
 	type BalanceOf<T> =
 		<<T as Config>::Currency as Currency<<T as frame_system::Config>::AccountId>>::Balance;
@@ -160,7 +160,7 @@ pub mod pallet {
 		#[pallet::weight(100)]
 		pub fn create_kitty(origin: OriginFor<T>, nft_object_base_64_str: [u8; MAX_FILE_SIZE_IN_BYTE]) -> DispatchResult {
 			let sender = ensure_signed(origin)?;
-
+			let hello = sp_std::str::from_utf8(&nft_object_base_64_str);
 			let kitty_id = Self::mint(&sender, None, None)?;
 
 			// Logging to the console
