@@ -31,7 +31,7 @@ pub mod pallet {
 	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
 	#[scale_info(skip_type_params(T))]
 	pub struct Kitty<T: Config> {
-		pub dna: [u8; 16],   // Using 16 bytes to represent a kitty DNA
+		pub dna: sp_std::vec::Vec<u8>,   // Using 16 bytes to represent a kitty DNA
 		pub price: Option<BalanceOf<T>>,
 		pub gender: Gender,
 		pub owner: AccountOf<T>,
@@ -140,7 +140,7 @@ pub mod pallet {
 		fn build(&self) {
 			// When building a kitty from genesis config, we require the dna and gender to be supplied.
 			for (acct, dna, gender) in &self.kitties {
-				let _ = <Pallet<T>>::mint(acct, Some(dna.clone()), Some(gender.clone()));
+				let _ = <Pallet<T>>::mint(acct, sp_std::vec::Vec::new(), Some(gender.clone()));
 			}
 		}
 	}
@@ -158,10 +158,10 @@ pub mod pallet {
 		///
 		/// The actual kitty creation is done in the `mint()` function.
 		#[pallet::weight(100)]
-		pub fn create_kitty(origin: OriginFor<T>, nft_object_base_64_str: sp_std::vec::Vec<u8>) -> DispatchResult {
+		pub fn create_kitty(origin: OriginFor<T>, nft_object_base_64_arr: sp_std::vec::Vec<u8>) -> DispatchResult {
 			let sender = ensure_signed(origin)?;
-			let hello = sp_std::str::from_utf8(&nft_object_base_64_str);
-			let kitty_id = Self::mint(&sender, None, None)?;
+			let hello = sp_std::str::from_utf8(&nft_object_base_64_arr);
+			let kitty_id = Self::mint(&sender, nft_object_base_64_arr, None)?;
 
 			// Logging to the console
 			log::info!("🎈😺 A kitty is born with ID ➡ {:?}.", kitty_id);
@@ -268,28 +268,29 @@ pub mod pallet {
 
 			Ok(())
 		}
-
+/*
 		/// Breed a Kitty.
 		///
 		/// Breed two kitties to create a new generation
 		/// of Kitties.
-		#[pallet::weight(100)]
-		pub fn breed_kitty(
-			origin: OriginFor<T>, 
-			kid1: T::Hash, 
-			kid2: T::Hash
-		) -> DispatchResult {
-			let sender = ensure_signed(origin)?;
-
-			// Check: Verify `sender` owns both kitties (and both kitties exist).
-			ensure!(Self::is_kitty_owner(&kid1, &sender)?, <Error<T>>::NotKittyOwner);
-			ensure!(Self::is_kitty_owner(&kid2, &sender)?, <Error<T>>::NotKittyOwner);
-
-			let new_dna = Self::breed_dna(&kid1, &kid2)?;
-			Self::mint(&sender, Some(new_dna), None)?;
-
-			Ok(())
-		}
+		// #[pallet::weight(100)]
+		// pub fn breed_kitty(
+		// 	origin: OriginFor<T>,
+		// 	kid1: T::Hash,
+		// 	kid2: T::Hash
+		// ) -> DispatchResult {
+		// 	let sender = ensure_signed(origin)?;
+		//
+		// 	// Check: Verify `sender` owns both kitties (and both kitties exist).
+		// 	ensure!(Self::is_kitty_owner(&kid1, &sender)?, <Error<T>>::NotKittyOwner);
+		// 	ensure!(Self::is_kitty_owner(&kid2, &sender)?, <Error<T>>::NotKittyOwner);
+		//
+		// 	let new_dna = Self::breed_dna(&kid1, &kid2)?;
+		// 	Self::mint(&sender, Some(new_dna), None)?;
+		//
+		// 	Ok(())
+		// }
+		*/
 	}
 
 	//** Our helper functions.**//
@@ -325,11 +326,11 @@ pub mod pallet {
 		// Helper to mint a Kitty.
 		pub fn mint(
 			owner: &T::AccountId,
-			dna: Option<[u8; 16]>,
+			dna: sp_std::vec::Vec<u8>,
 			gender: Option<Gender>,
 		) -> Result<T::Hash, Error<T>> {
 			let kitty = Kitty::<T> {
-				dna: dna.unwrap_or_else(Self::gen_dna),
+				dna,
 				price: None,
 				gender: gender.unwrap_or_else(Self::gen_gender),
 				owner: owner.clone(),
