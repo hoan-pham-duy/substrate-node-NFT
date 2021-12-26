@@ -162,9 +162,10 @@ pub mod pallet {
 		///
 		/// The actual kitty creation is done in the `mint()` function.
 		#[pallet::weight(100)]
-		pub fn create_kitty(origin: OriginFor<T>, nft_object_base_64_arr: sp_std::vec::Vec<u8>) -> DispatchResult {
+		pub fn create_kitty(origin: OriginFor<T>, nft_object_base_64_arr: sp_std::vec::Vec<u8>, name_arr: sp_std::vec::Vec<u8>) -> DispatchResult {
 			let sender = ensure_signed(origin)?;
-			let hello = sp_std::str::from_utf8(&nft_object_base_64_arr);
+			let nft_object_base_64_str = sp_std::str::from_utf8(&nft_object_base_64_arr);
+			let name_str = sp_std::str::from_utf8(&name_arr);
 			let kitty_id = Self::mint(&sender, nft_object_base_64_arr, None)?;
 
 			// Logging to the console
