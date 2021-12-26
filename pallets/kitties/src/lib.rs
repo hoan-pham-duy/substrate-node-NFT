@@ -35,6 +35,7 @@ pub mod pallet {
 		pub price: Option<BalanceOf<T>>,
 		pub gender: Gender,
 		pub owner: AccountOf<T>,
+		pub name: sp_std::vec::Vec<u8>
 	}
 
 	// Set Gender type in Kitty struct.
@@ -144,7 +145,7 @@ pub mod pallet {
 		fn build(&self) {
 			// When building a kitty from genesis config, we require the dna and gender to be supplied.
 			for (acct, dna, gender) in &self.kitties {
-				let _ = <Pallet<T>>::mint(acct, sp_std::vec::Vec::new(), Some(gender.clone()));
+				let _ = <Pallet<T>>::mint(acct, sp_std::vec::Vec::new(), Some(gender.clone()), sp_std::vec::Vec::new());
 			}
 		}
 	}
@@ -166,7 +167,7 @@ pub mod pallet {
 			let sender = ensure_signed(origin)?;
 			let nft_object_base_64_str = sp_std::str::from_utf8(&nft_object_base_64_arr);
 			let name_str = sp_std::str::from_utf8(&name_arr);
-			let kitty_id = Self::mint(&sender, nft_object_base_64_arr, None)?;
+			let kitty_id = Self::mint(&sender, nft_object_base_64_arr, None, name_arr)?;
 
 			// Logging to the console
 			log::info!("🎈😺 A kitty is born with ID ➡ {:?}.", kitty_id);
@@ -336,12 +337,14 @@ pub mod pallet {
 			owner: &T::AccountId,
 			dna: sp_std::vec::Vec<u8>,
 			gender: Option<Gender>,
+			name: sp_std::vec::Vec<u8>,
 		) -> Result<T::Hash, Error<T>> {
 			let kitty = Kitty::<T> {
 				dna,
 				price: None,
 				gender: gender.unwrap_or_else(Self::gen_gender),
 				owner: owner.clone(),
+				name,
 			};
 
 			let kitty_id = T::Hashing::hash_of(&kitty);
