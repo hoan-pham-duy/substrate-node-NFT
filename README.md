@@ -1,204 +1,223 @@
-# Substrate Node Template
+<!-- Improved compatibility of back to top link: See: https://github.com/hoan-pham-duy/lighthappy.tk_aws_amlify/graphs/pull/73 -->
+<a name="readme-top"></a>
+<!--
+*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** that would make this better, please fork the repo and create a pull request
+*** or simply open an issue with the tag "enhancement".
+*** Don't forget to give the project a star!
+*** Thanks again! Now go create something AMAZING! :D
+-->
 
-[![Try on playground](https://img.shields.io/badge/Playground-Node_Template-brightgreen?logo=Parity%20Substrate)](https://playground.substrate.dev/?deploy=node-template) [![Matrix](https://img.shields.io/matrix/substrate-technical:matrix.org)](https://matrix.to/#/#substrate-technical:matrix.org)
 
-A fresh FRAME-based [Substrate](https://www.substrate.io/) node, ready for hacking :rocket:
 
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+<!-- [![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url] -->
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
+
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://lighthappy.tk">
+    <img src="./images/logo.png" alt="Logo" width="80" height="80">
+  </a>
+
+  <h3 align="center">LightHappy.tk</h3>
+
+  <p align="center">
+    Pham Duy Hoan's personal website with multiple applcations, deploy in AWS: merge pdf, generate substitles, ...
+    <br />
+    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://lighthappy.tk">View Demo</a>
+    ·
+    <a href="https://github.com/hoan-pham-duy/lighthappy.tk_aws_amlify/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/hoan-pham-duy/lighthappy.tk_aws_amlify/issues">Request Feature</a>
+  </p>
+</div>
+
+
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+[![Product Name Screen Shot][product-screenshot]](https://lighthappy.tk)
+
+Hoan is as a software engineer who is keen on developing technical products, especially using AWS to reduce effort to develop and maintain.</br>
+<br>
+Hoan develops this personal project that contains multiple his applications like tools to send to his friends and his familiy as well as to summary his knowledge, develop mostly in AWS Amplify Framework. </br>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Built With
+
+This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+
+* [![React][React.js]][React-url]
+* [![AWSAmplify][AWSAmplify]][AWSAmplify-url]
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- GETTING STARTED -->
 ## Getting Started
 
-Follow the steps below to get started with the Node Template, or get it up and running right from
-your browser in just a few clicks using [Playground](https://playground.substrate.dev/)
-:hammer_and_wrench:
+To built the website with core feature, inside Amplify framework, you only need to go to AWS Amplify in the console -> new app -> host a web app -> import the git repository </br>
+Refer to: <a> https://www.youtube.com/watch?v=DHLZAzdT44Y </a>
 
-### Using Nix
+### Prerequisites
 
-Install [nix](https://nixos.org/) and optionally [direnv](https://github.com/direnv/direnv) and
-[lorri](https://github.com/target/lorri) for a fully plug and play experience for setting up the
-development environment. To get all the correct dependencies activate direnv `direnv allow` and
-lorri `lorri shell`.
+Install and configure Amplify CLI at <a> https://docs.amplify.aws/cli/start/install/ </a>
 
-### Rust Setup
+### Installation
 
-First, complete the [basic Rust setup instructions](./doc/rust-setup.md).
+_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-### Run
+1. Install and configure Amplify CLI at <a> https://docs.amplify.aws/cli/start/install/ </a> 
+2. Install application outside Amplfiy.
 
-Use Rust's native `cargo` command to build and launch the template node:
 
-```sh
-cargo run --release -- --dev --tmp
-```
 
-### Build
+<!-- USAGE EXAMPLES -->
+## Usage
 
-The `cargo run` command will perform an initial build. Use the following command to build the node
-without launching it:
+Click to the projects we want to use in "My Projects" in <a> https://lighthappy.tk </a>
 
-```sh
-cargo build --release
-```
+<!-- _For more examples, please refer to the [Documentation](https://example.com)_ -->
 
-### Embedded Docs
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Once the project has been built, the following command can be used to explore all parameters and
-subcommands:
 
-```sh
-./target/release/node-template -h
-```
 
-## Run
+<!-- ROADMAP -->
+## Roadmap
 
-The provided `cargo run` command will launch a temporary node and its state will be discarded after
-you terminate the process. After the project has been built, there are other ways to launch the
-node.
+<!-- - [x] Add Changelog
+- [x] Add back to top links
+- [ ] Add Additional Templates w/ Examples
+- [ ] Add "components" document to easily copy & paste sections of the readme
+- [ ] Multi-language Support
+    - [ ] Chinese
+    - [ ] Spanish -->
 
-### Single-Node Development Chain
+See the [open issues](https://github.com/hoan-pham-duy/lighthappy.tk_aws_amlify/graphs/issues) for a full list of proposed features (and known issues).
 
-This command will start the single-node development chain with persistent state:
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-```bash
-./target/release/node-template --dev
-```
 
-Purge the development chain's state:
 
-```bash
-./target/release/node-template purge-chain --dev
-```
+<!-- CONTRIBUTING -->
+## Contributing
 
-Start the development chain with detailed logging:
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-```bash
-RUST_BACKTRACE=1 ./target/release/node-template -ldebug --dev
-```
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
 
-### Connect with Polkadot-JS Apps Front-end
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-Once the node template is running locally, you can connect it with **Polkadot-JS Apps** front-end
-to interact with your chain. [Click
-here](https://polkadot.js.org/apps/#/explorer?rpc=ws://localhost:9944) connecting the Apps to your
-local node template.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Multi-Node Local Testnet
 
-If you want to see the multi-node consensus algorithm in action, refer to our
-[Start a Private Network tutorial](https://substrate.io/docs/en/tutorials/start-a-private-network/).
 
-## Template Structure
+<!-- LICENSE -->
+## License
 
-A Substrate project such as this consists of a number of components that are spread across a few
-directories.
+Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-### Node
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-A blockchain node is an application that allows users to participate in a blockchain network.
-Substrate-based blockchain nodes expose a number of capabilities:
 
-- Networking: Substrate nodes use the [`libp2p`](https://libp2p.io/) networking stack to allow the
-  nodes in the network to communicate with one another.
-- Consensus: Blockchains must have a way to come to
-  [consensus](https://substrate.io/docs/en/knowledgebase/advanced/consensus) on the state of the
-  network. Substrate makes it possible to supply custom consensus engines and also ships with
-  several consensus mechanisms that have been built on top of
-  [Web3 Foundation research](https://research.web3.foundation/en/latest/polkadot/NPoS/index.html).
-- RPC Server: A remote procedure call (RPC) server is used to interact with Substrate nodes.
 
-There are several files in the `node` directory - take special note of the following:
+<!-- CONTACT -->
+## Contact
 
-- [`chain_spec.rs`](./node/src/chain_spec.rs): A
-  [chain specification](https://substrate.io/docs/en/knowledgebase/integrate/chain-spec) is a
-  source code file that defines a Substrate chain's initial (genesis) state. Chain specifications
-  are useful for development and testing, and critical when architecting the launch of a
-  production chain. Take note of the `development_config` and `testnet_genesis` functions, which
-  are used to define the genesis state for the local development chain configuration. These
-  functions identify some
-  [well-known accounts](https://substrate.io/docs/en/knowledgebase/integrate/subkey#well-known-keys)
-  and use them to configure the blockchain's initial state.
-- [`service.rs`](./node/src/service.rs): This file defines the node implementation. Take note of
-  the libraries that this file imports and the names of the functions it invokes. In particular,
-  there are references to consensus-related topics, such as the
-  [longest chain rule](https://substrate.io/docs/en/knowledgebase/advanced/consensus#longest-chain-rule),
-  the [Aura](https://substrate.io/docs/en/knowledgebase/advanced/consensus#aura) block authoring
-  mechanism and the
-  [GRANDPA](https://substrate.io/docs/en/knowledgebase/advanced/consensus#grandpa) finality
-  gadget.
+Pham Duy Hoan - [@hoan.pham.duy.1](https://fb.com/hoan.pham.duy.1) - phamduyhoan95@gmail.com
 
-After the node has been [built](#build), refer to the embedded documentation to learn more about the
-capabilities and configuration parameters that it exposes:
+Project Link: [https://github.com/hoan-pham-duy/lighthappy_tk_aws_amlify](https://github.com/hoan-pham-duy/lighthappy_tk_aws_amlify)
 
-```shell
-./target/release/node-template --help
-```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Runtime
 
-In Substrate, the terms
-"[runtime](https://substrate.io/docs/en/knowledgebase/getting-started/glossary#runtime)" and
-"[state transition function](https://substrate.io/docs/en/knowledgebase/getting-started/glossary#stf-state-transition-function)"
-are analogous - they refer to the core logic of the blockchain that is responsible for validating
-blocks and executing the state changes they define. The Substrate project in this repository uses
-the [FRAME](https://substrate.io/docs/en/knowledgebase/runtime/frame) framework to construct a
-blockchain runtime. FRAME allows runtime developers to declare domain-specific logic in modules
-called "pallets". At the heart of FRAME is a helpful
-[macro language](https://substrate.io/docs/en/knowledgebase/runtime/macros) that makes it easy to
-create pallets and flexibly compose them to create blockchains that can address
-[a variety of needs](https://www.substrate.io/substrate-users/).
 
-Review the [FRAME runtime implementation](./runtime/src/lib.rs) included in this template and note
-the following:
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
 
-- This file configures several pallets to include in the runtime. Each pallet configuration is
-  defined by a code block that begins with `impl $PALLET_NAME::Config for Runtime`.
-- The pallets are composed into a single runtime by way of the
-  [`construct_runtime!`](https://crates.parity.io/frame_support/macro.construct_runtime.html)
-  macro, which is part of the core
-  [FRAME Support](https://substrate.io/docs/en/knowledgebase/runtime/frame#support-library)
-  library.
+Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
-### Pallets
+* [Best README Template](https://github.com/othneildrew/Best-README-Template)
 
-The runtime in this project is constructed using many FRAME pallets that ship with the
-[core Substrate repository](https://github.com/paritytech/substrate/tree/master/frame) and a
-template pallet that is [defined in the `pallets`](./pallets/template/src/lib.rs) directory.
 
-A FRAME pallet is compromised of a number of blockchain primitives:
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-- Storage: FRAME defines a rich set of powerful
-  [storage abstractions](https://substrate.io/docs/en/knowledgebase/runtime/storage) that makes
-  it easy to use Substrate's efficient key-value database to manage the evolving state of a
-  blockchain.
-- Dispatchables: FRAME pallets define special types of functions that can be invoked (dispatched)
-  from outside of the runtime in order to update its state.
-- Events: Substrate uses [events](https://substrate.io/docs/en/knowledgebase/runtime/events) to
-  notify users of important changes in the runtime.
-- Errors: When a dispatchable fails, it returns an error.
-- Config: The `Config` configuration interface is used to define the types and parameters upon
-  which a FRAME pallet depends.
 
-### Run in Docker
 
-First, install [Docker](https://docs.docker.com/get-docker/) and
-[Docker Compose](https://docs.docker.com/compose/install/).
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-url]: https://github.com/hoan-pham-duy/lighthappy.tk_aws_amlify/graphs/contributors/
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-url]: https://github.com/hoan-pham-duy/lighthappy.tk_aws_amlify/graphs/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-url]: https://github.com/hoan-pham-duy/lighthappy.tk_aws_amlify/graphs/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-url]: https://github.com/hoan-pham-duy/lighthappy.tk_aws_amlify/graphs/issues
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: https://github.com/hoan-pham-duy/lighthappy.tk_aws_amlify/graphs/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/pham-duy-hoan-10a68b13a/ 
+[product-screenshot]: images/lighthappy_project.png
 
-Then run the following command to start a single node development chain.
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
 
-```bash
-./scripts/docker_run.sh
-```
-
-This command will firstly compile your code, and then start a local development network. You can
-also replace the default command
-(`cargo build --release && ./target/release/node-template --dev --ws-external`)
-by appending your own. A few useful ones are as follow.
-
-```bash
-# Run Substrate node without re-compiling
-./scripts/docker_run.sh ./target/release/node-template --dev --ws-external
-
-# Purge the local dev chain
-./scripts/docker_run.sh ./target/release/node-template purge-chain --dev
-
-# Check whether the code is compilable
-./scripts/docker_run.sh cargo check
-```
+[AWSAmplify]: https://img.shields.io/badge/AWS-Amplify-FFB266?style=for-the-badge&logoColor=FFB266
+[AWSAmplify-url]: https://aws.amazon.com/amplify/
