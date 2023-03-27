@@ -4,7 +4,6 @@
 /// Learn more about FRAME and the core library of Substrate FRAME pallets:
 /// <https://substrate.io/docs/en/knowledgebase/runtime/frame>
 pub use pallet::*;
-
 mod mock;
 mod tests;
 
@@ -23,6 +22,7 @@ pub mod pallet {
 	#[cfg(feature = "std")]
 	use frame_support::serde::{Deserialize, Serialize};
 
+	const MAX_FILE_SIZE_IN_BYTE: usize = 100; //MAX 100 Bytes
 	type AccountOf<T> = <T as frame_system::Config>::AccountId;
 	type BalanceOf<T> =
 		<<T as Config>::Currency as Currency<<T as frame_system::Config>::AccountId>>::Balance;
@@ -31,21 +31,26 @@ pub mod pallet {
 	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
 	#[scale_info(skip_type_params(T))]
 	pub struct Kitty<T: Config> {
-		pub dna: [u8; 16],   // Using 16 bytes to represent a kitty DNA
+		pub dna: sp_std::vec::Vec<u8>,   // Using 16 bytes to represent a kitty DNA
 		pub price: Option<BalanceOf<T>>,
 		pub gender: Gender,
 		pub owner: AccountOf<T>,
+		pub name: sp_std::vec::Vec<u8>
 	}
 
 	// Set Gender type in Kitty struct.
 	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
 	#[scale_info(skip_type_params(T))]
 	#[cfg_attr(feature = "std", derive(Serialize, Deserialize))]
+	/*
 	pub enum Gender {
 		Male,
 		Female,
 	}
-
+	*/
+	pub enum Gender {
+		ConstantGender,
+	}
 	#[pallet::pallet]
 	#[pallet::generate_store(pub(super) trait Store)]
 	pub struct Pallet<T>(_);
@@ -140,7 +145,7 @@ pub mod pallet {
 		fn build(&self) {
 			// When building a kitty from genesis config, we require the dna and gender to be supplied.
 			for (acct, dna, gender) in &self.kitties {
-				let _ = <Pallet<T>>::mint(acct, Some(dna.clone()), Some(gender.clone()));
+				let _ = <Pallet<T>>::mint(acct, sp_std::vec::Vec::new(), Some(gender.clone()), sp_std::vec::Vec::new());
 			}
 		}
 	}
@@ -158,10 +163,11 @@ pub mod pallet {
 		///
 		/// The actual kitty creation is done in the `mint()` function.
 		#[pallet::weight(100)]
-		pub fn create_kitty(origin: OriginFor<T>) -> DispatchResult {
+		pub fn create_kitty(origin: OriginFor<T>, nft_object_base_64_arr: sp_std::vec::Vec<u8>, name_arr: sp_std::vec::Vec<u8>) -> DispatchResult {
 			let sender = ensure_signed(origin)?;
-
-			let kitty_id = Self::mint(&sender, None, None)?;
+			let nft_object_base_64_str = sp_std::str::from_utf8(&nft_object_base_64_arr);
+			let name_str = sp_std::str::from_utf8(&name_arr);
+			let kitty_id = Self::mint(&sender, nft_object_base_64_arr, None, name_arr)?;
 
 			// Logging to the console
 			log::info!("🎈😺 A kitty is born with ID ➡ {:?}.", kitty_id);
@@ -268,39 +274,43 @@ pub mod pallet {
 
 			Ok(())
 		}
-
+/*
 		/// Breed a Kitty.
 		///
 		/// Breed two kitties to create a new generation
 		/// of Kitties.
-		#[pallet::weight(100)]
-		pub fn breed_kitty(
-			origin: OriginFor<T>, 
-			kid1: T::Hash, 
-			kid2: T::Hash
-		) -> DispatchResult {
-			let sender = ensure_signed(origin)?;
-
-			// Check: Verify `sender` owns both kitties (and both kitties exist).
-			ensure!(Self::is_kitty_owner(&kid1, &sender)?, <Error<T>>::NotKittyOwner);
-			ensure!(Self::is_kitty_owner(&kid2, &sender)?, <Error<T>>::NotKittyOwner);
-
-			let new_dna = Self::breed_dna(&kid1, &kid2)?;
-			Self::mint(&sender, Some(new_dna), None)?;
-
-			Ok(())
-		}
+		// #[pallet::weight(100)]
+		// pub fn breed_kitty(
+		// 	origin: OriginFor<T>,
+		// 	kid1: T::Hash,
+		// 	kid2: T::Hash
+		// ) -> DispatchResult {
+		// 	let sender = ensure_signed(origin)?;
+		//
+		// 	// Check: Verify `sender` owns both kitties (and both kitties exist).
+		// 	ensure!(Self::is_kitty_owner(&kid1, &sender)?, <Error<T>>::NotKittyOwner);
+		// 	ensure!(Self::is_kitty_owner(&kid2, &sender)?, <Error<T>>::NotKittyOwner);
+		//
+		// 	let new_dna = Self::breed_dna(&kid1, &kid2)?;
+		// 	Self::mint(&sender, Some(new_dna), None)?;
+		//
+		// 	Ok(())
+		// }
+		*/
 	}
 
 	//** Our helper functions.**//
 
 	impl<T: Config> Pallet<T> {
 		fn gen_gender() -> Gender {
+			/*
 			let random = T::KittyRandomness::random(&b"gender"[..]).0;
 			match random.as_ref()[0] % 2 {
 				0 => Gender::Male,
 				_ => Gender::Female,
 			}
+			*/
+			Gender::ConstantGender
 		}
 
 		fn gen_dna() -> [u8; 16] {
@@ -325,14 +335,16 @@ pub mod pallet {
 		// Helper to mint a Kitty.
 		pub fn mint(
 			owner: &T::AccountId,
-			dna: Option<[u8; 16]>,
+			dna: sp_std::vec::Vec<u8>,
 			gender: Option<Gender>,
+			name: sp_std::vec::Vec<u8>,
 		) -> Result<T::Hash, Error<T>> {
 			let kitty = Kitty::<T> {
-				dna: dna.unwrap_or_else(Self::gen_dna),
+				dna,
 				price: None,
 				gender: gender.unwrap_or_else(Self::gen_gender),
 				owner: owner.clone(),
+				name,
 			};
 
 			let kitty_id = T::Hashing::hash_of(&kitty);
